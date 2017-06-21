@@ -2,7 +2,7 @@ package Twitter::Queue;
 use warnings;
 use strict;
 use Net::Twitter::Lite::WithAPIv1_1;
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 sub new {
   my ($class, $args) = @_;
@@ -38,7 +38,25 @@ __END__
 
 =head1 NAME
 
-Twitter::Queue - the micro blogging framework FIFO queue
+Twitter::Queue - the micro blogging cloud based FIFO queue
+
+=head1 SYNOPSIS
+
+  use Twitter::Queue;
+
+  my $q = Twitter::Queue-new({
+    consumer_key        => '311ee384568611e79db19e8',
+    consumer_secret     => '3cac5b46568611e79c9c5ad',
+    access_token        => '45d89cc0568611e7991c72d',
+    access_token_secret => '470dbab2568611e79c5d8ad',
+  });
+
+  $q->add('{"some":"jsondata"}');
+  ...
+
+  while (my $item = $q->next) {
+    # do something
+  }
 
 =head1 METHODS
 
